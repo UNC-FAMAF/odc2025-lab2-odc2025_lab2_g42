@@ -20,6 +20,7 @@ main:
 loop1:
 	mov x1, SCREEN_WIDTH         // X Size
 loop0:
+
 	stur w10,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
 	sub x1,x1,1	   // Decrementar contador X
@@ -27,6 +28,34 @@ loop0:
 	sub x2,x2,1	   // Decrementar contador Y
 	cbnz x2,loop1  // Si no es la última fila, salto
 
+//Dibujar un Rectangulo
+
+	
+	mov x1, #100	//X inicial
+	mov x2, #100	//Y inicial
+	mov x3, #100	//ancho
+	mov x4, #50	//alto	
+	movz w10, 0x25 // Color Rectangulo	
+	movk w10, 0x0C0C
+rect_loop_y:
+	mov x5, x1 //Resetear el valor de X para cada fila
+	mov x6, x3 //Resetear contador de ancho
+rect_loop_x:
+	mov x7, SCREEN_WIDTH
+	mul x8, x2, x7 // x8 = y*SCREEN_WIDTH
+	add x8, x8, x5 // x8 += x 
+	lsl x8, x8, #2 // x8 *= 4 (los bytes por pixel)
+	add x8, x20, x8 // x8 = direccion base + offset
+	stur w10, [x8] // pintar pixel
+	
+	add x5, x5, #1 // Siguiente x
+	subs x6, x6, #1 // decrementar contador de ancho
+	b.ne rect_loop_x // Repetir hasta que x6= 0
+
+	add x2, x2, #1 //siguiente y
+	subs x4, x4, #1 // Decrementar contador de alto
+	b.ne rect_loop_y //Repetir hasta que x4 = 0
+	
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
 
