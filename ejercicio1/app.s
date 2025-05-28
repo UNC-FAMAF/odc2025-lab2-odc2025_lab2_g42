@@ -13,8 +13,8 @@ main:
  	mov x20, x0	// Guarda la dirección base del framebuffer en x20
 	//---------------- CODE HERE ------------------------------------
 
-	movz x10, 0xB6, lsl 16
-	movk x10, 0x1A1A, lsl 00
+	movz x10, 0x1919, lsl 16
+	movk x10, 0x34, lsl 00
 
 	mov x2, SCREEN_HEIGH         // Y Size
 loop1:
@@ -31,12 +31,12 @@ loop0:
 //Dibujar un Rectangulo
 
 	
-	mov x1, #100	//X inicial
-	mov x2, #100	//Y inicial
+	mov x1, #270	//X inicial
+	mov x2, #150	//Y inicial
 	mov x3, #100	//ancho
-	mov x4, #50	//alto	
-	movz w10, 0x25 // Color Rectangulo	
-	movk w10, 0x0C0C
+	mov x4, #330	//alto	
+	movz w10, 0x33 // Color Rectangulo	
+	movk w10, 0x3333
 rect_loop_y:
 	mov x5, x1 //Resetear el valor de X para cada fila
 	mov x6, x3 //Resetear contador de ancho
@@ -56,6 +56,8 @@ rect_loop_x:
 	subs x4, x4, #1 // Decrementar contador de alto
 	b.ne rect_loop_y //Repetir hasta que x4 = 0
 	
+
+
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
 
