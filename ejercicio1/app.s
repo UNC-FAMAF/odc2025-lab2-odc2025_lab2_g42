@@ -30,33 +30,12 @@ loop0:
 
 //Dibujar un Rectangulo
 
-	
-	mov x1, #270	//X inicial
-	mov x2, #150	//Y inicial
-	mov x3, #100	//ancho
-	mov x4, #330	//alto	
-	movz w10, 0x33 // Color Rectangulo	
-	movk w10, 0x3333
-rect_loop_y:
-	mov x5, x1 //Resetear el valor de X para cada fila
-	mov x6, x3 //Resetear contador de ancho
-rect_loop_x:
-	mov x7, SCREEN_WIDTH
-	mul x8, x2, x7 // x8 = y*SCREEN_WIDTH
-	add x8, x8, x5 // x8 += x 
-	lsl x8, x8, #2 // x8 *= 4 (los bytes por pixel)
-	add x8, x20, x8 // x8 = direccion base + offset
-	stur w10, [x8] // pintar pixel
-	
-	add x5, x5, #1 // Siguiente x
-	subs x6, x6, #1 // decrementar contador de ancho
-	b.ne rect_loop_x // Repetir hasta que x6= 0
+	mov x21, #270
+	mov x22, #150
+	mov x23, #100
+	mov x24, #330
 
-	add x2, x2, #1 //siguiente y
-	subs x4, x4, #1 // Decrementar contador de alto
-	b.ne rect_loop_y //Repetir hasta que x4 = 0
-	
-
+	bl DrawRect
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
@@ -77,9 +56,36 @@ rect_loop_x:
 	// efectivamente, su valor representará si GPIO 2 está activo
 	lsr w11, w11, 1
 
-	//---------------------------------------------------------------
-	// Infinite Loop
+DrawRect:	
+	mov x1, x21	//x21 = X inicial
+	mov x2, x22	//Y inicial
+	mov x3, x23	//ancho
+	mov x4, x24	//alto	
+	movz w10, 0x33 // Color Rectangulo	
+	movk w10, 0x3333
 
+rect_loop_y:
+	mov x5, x1 //Resetear el valor de X para cada fila
+	mov x6, x3 //Resetear contador de ancho
+
+rect_loop_x:
+	mov x7, SCREEN_WIDTH
+	mul x8, x2, x7 // x8 = y*SCREEN_WIDTH
+	add x8, x8, x5 // x8 += x 
+	lsl x8, x8, #2 // x8 *= 4 (los bytes por pixel)
+	add x8, x20, x8 // x8 = direccion base + offset
+	stur w10, [x8] // pintar pixel
+	
+	add x5, x5, #1 // Siguiente x
+	subs x6, x6, #1 // decrementar contador de ancho
+	b.ne rect_loop_x // Repetir hasta que x6= 0
+
+	add x2, x2, #1 //siguiente y
+	subs x4, x4, #1 // Decrementar contador de alto
+	b.ne rect_loop_y //Repetir hasta que x4 = 0
+	br x30
+//---------------------------------------------------------------
+// Infinite Loop
 	
 InfLoop:
 	b InfLoop
