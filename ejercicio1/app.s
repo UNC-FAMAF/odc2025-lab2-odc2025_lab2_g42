@@ -30,12 +30,28 @@ loop0:
 
 //Dibujar un Rectangulo
 
-	mov x21, #270
+	mov x21, #220
 	mov x22, #150
-	mov x23, #100
+	mov x23, #150
 	mov x24, #330
 
 	bl DrawRect
+
+    mov x21, #50
+	mov x22, #180
+	mov x23, #150
+	mov x24, #300
+
+	bl DrawRect
+
+	mov x21, #390
+	mov x22, #210	
+	mov x23, #150
+	mov x24, #270
+
+	bl DrawRect
+
+
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
