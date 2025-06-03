@@ -27,7 +27,8 @@ loop0:
 	cbnz x1,loop0  // Si no terminó la fila, salto
 	sub x2,x2,1	   // Decrementar contador Y
 	cbnz x2,loop1  // Si no es la última fila, salto
-
+	
+	bl DibujarEstrellas
 //Dibujar un Rectangulo
 
 	mov x21, #220
