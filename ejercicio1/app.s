@@ -349,7 +349,6 @@ bl DrawRect
 bl DrawRect
 
 
-
 	//Dibujar luna
 	mov x21, #600 //Centro X de la luna
 	mov x22, #40 //Centro Y de la luna
