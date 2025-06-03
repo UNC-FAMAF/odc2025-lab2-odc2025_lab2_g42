@@ -234,6 +234,119 @@ bl DrawRect
 	mov x24, #7
 bl DrawRect
 
+Ventanas1:	// Dibujo las ventanas para cada edificio
+
+	mov x28, #10 // Imprimo la cantidad de ventanas en filas
+
+	// Defino la ubicacion de las ventanas y su tamaño
+	mov x22, #190
+	mov x21, #60
+	mov x23, #130
+	mov x24, #20
+	movz w25, 0xC033
+	movk w25, 0x7700
+
+oLoop1:
+	bl DrawRect			// Imprimo las ventanas
+	add x22, x22, #30	// Desplazo hacia abajo
+	sub x28, x28, #1	// Decremento la cantidad de ventanas
+	cbnz x28, oLoop1 // Si el contador no llega a cero imrimo de nuevo
+
+Ventanas2:
+
+	mov x28, #11 // Imprimo la cantidad de ventanas en filas
+
+	// Defino la ubicacion de las ventanas y su tamaño
+	mov x21, #230
+	mov x22, #160
+	mov x23, #130
+	mov x24, #20
+	movz w25, 0xFF33
+	movk w25, 0x6044
+
+oLoop2:
+	bl DrawRect			// Imprimo las ventanas
+	add x22, x22, #30	// Desplazo hacia abajo
+	sub x28, x28, #1	// Decremento la cantidad de ventanas
+	cbnz x28, oLoop2 // Si el contador no llega a cero imrimo de nuevo
+
+Ventanas3:
+
+	mov x28, #9 // Imprimo la cantidad de ventanas en filas
+
+	// Defino la ubicacion de las ventanas y su tamaño
+	mov x21, #400
+	mov x22, #220	
+	mov x23, #130
+	mov x24, #20
+	movz w25, 0xFF66
+	movk w25, 0x6033
+
+oLoop3:
+	bl DrawRect			// Imprimo las ventanas
+	add x22, x22, #30	// Desplazo hacia abajo
+	sub x28, x28, #1	// Decremento la cantidad de ventanas
+	cbnz x28, oLoop3 // Si el contador no llega a cero imrimo de nuevo
+
+MarcosDeLasVentanas:	// Dibujo la separacion entre las ventanas
+	
+	mov x28, #3 // Imprimo la cantidad de ventanas en filas
+
+	// Defino la ubicacion de las ventanas y su tamaño
+	mov x21, #115
+	mov x22, #190
+	mov x23, #20
+	mov x24, #300
+	movz w25, 0x33
+	movk w25, 0x3333	// Coloco el color
+
+oLoop11:
+	bl DrawRect			// Imprimo las ventanas
+	add x21, x21, #170	// Desplazo hacia la derecha
+	sub x28, x28, #1	// Decremento la cantidad de marcos
+
+	cmp x28, #3			//Si esta en el segundo pilar cambio el diseño
+	b.eq oLoop11
+	sub x22, x22, #30
+	add x24, x24, #320
+
+	cmp x28, #2		//Si esta en el ultimo pilar cambio el diseño
+	b.eq oLoop11
+	add x22, x22, #90
+
+	cbnz x28, oLoop11 // Si el contador no llega a cero imrimo de nuevo
+
+Antena: // Dibujo la antena del primer edificio
+	mov x21, #80
+	mov x22, #130
+	mov x23, #90
+	mov x24, #50
+	movz w25, 0x33
+	movk w25, 0x3333
+bl DrawRect
+
+	mov x21, #122
+	mov x22, #60
+	mov x23, #5
+	mov x24, #80
+	movz w25, 0x33
+	movk w25, 0x3333
+bl DrawRect
+
+	mov x21, #114
+	mov x22, #50
+	mov x23, #20
+	mov x24, #20
+	movz w25, 0xAA00
+	movk w25, 0xFFFF, lsl 16
+bl DrawRect
+	mov x21, #119
+	mov x22, #54
+	mov x23, #10
+	mov x24, #10
+	movz w25, 0xFF00
+	movk w25, 0xFFFF, lsl 16
+bl DrawRect
 
 
 
