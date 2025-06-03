@@ -49,7 +49,13 @@ loop0:
 	mov x23, #150
 	mov x24, #270
 
-	bl DrawRect
+	bl DrawRect 
+
+	//Dibujar luna
+	mov x21, #600 //Centro X de la luna
+	mov x22, #40 //Centro Y de la luna
+	mov x23, #30 //Radio de la luna
+	bl DibujoLuna //Llamo a la subrutina que dibuja la luna 
 
 
 
