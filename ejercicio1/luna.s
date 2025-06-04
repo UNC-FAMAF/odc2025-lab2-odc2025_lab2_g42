@@ -6,6 +6,13 @@
 
 
 DibujoLuna:
+ 	 
+	sub sp, sp, #48
+    stp x20, x21, [sp]
+    stp x22, x23, [sp, #16]
+    stp x24, x30, [sp, #32]  // Guarda LR
+
+
 //x21 va a ser el centro x
 //x22 va a ser el centro y
 //x23 va a ser el radio
@@ -19,10 +26,22 @@ DibujoLuna:
 	movk w10, 0x0000, lsl 00
 	bl DibujoCirculo
 
-	br x30
+	ldp x24, x30, [sp, #32]  // Restaura LR
+    ldp x22, x23, [sp, #16]
+    ldp x20, x21, [sp]
+    add sp, sp, #48
+    ret
+
 
 
 DibujoCirculo:
+
+	sub sp, sp, #64
+    stp x1, x2, [sp]         // Guarda todos los registros usados
+    stp x3, x4, [sp, #16]
+    stp x5, x6, [sp, #32]
+    stp x7, x8, [sp, #48]
+
 // X21 Es el centro x
 // x22 Es el centro y
 // x23 es el radio
@@ -70,4 +89,11 @@ add x4, x4, #1 //Siguiente fila en la columna
 cmp x4, x3
 ble circulo_exterior_loop // repetir hasta llegar a +radio en y 
 
-br x30 	
+	ldp x7, x8, [sp, #48]    // Restaura registros
+    ldp x5, x6, [sp, #32]
+    ldp x3, x4, [sp, #16]
+    ldp x1, x2, [sp]
+    add sp, sp, #64
+    ret
+	
+

@@ -6,6 +6,7 @@
 	.equ GPIO_GPFSEL0,   0x00
 	.equ GPIO_GPLEV0,    0x34
 
+	.globl DrawRect
 	.globl main
 
 main:
@@ -29,7 +30,7 @@ loop0:
 	cbnz x2,loop1  // Si no es la última fila, salto
 	
 	bl DibujarEstrellas
-
+	
 //Dibujar un Rectangulo
 
 	mov x21, #220
@@ -58,6 +59,9 @@ loop0:
 	movk w25, 0x3333
 
 	bl DrawRect 
+
+
+
 
 	// Dibujo un Cartel
 DibujoCartel:
@@ -316,46 +320,36 @@ oLoop11:
 
 	cbnz x28, oLoop11 // Si el contador no llega a cero imrimo de nuevo
 
-Antena: // Dibujo la antena del primer edificio
-	mov x21, #80
-	mov x22, #130
-	mov x23, #90
-	mov x24, #50
-	movz w25, 0x33
-	movk w25, 0x3333
-bl DrawRect
 
-	mov x21, #122
-	mov x22, #60
-	mov x23, #5
-	mov x24, #80
-	movz w25, 0x33
-	movk w25, 0x3333
-bl DrawRect
 
-	mov x21, #114
-	mov x22, #50
-	mov x23, #20
-	mov x24, #20
-	movz w25, 0xAA00
-	movk w25, 0xFFFF, lsl 16
-bl DrawRect
-	mov x21, #119
-	mov x22, #54
-	mov x23, #10
-	mov x24, #10
-	movz w25, 0xFF00
-	movk w25, 0xFFFF, lsl 16
-bl DrawRect
 
+	// Preserva registros ANTES de llamar a las funciones
+	sub sp, sp, #48          // Reserva espacio para 6 registros (x21-x25, x30)
+	stp x21, x22, [sp]       // Guarda x21, x22
+	stp x23, x24, [sp, #16]  // Guarda x23, x24
+	str x25, [sp, #32]       // Guarda x25
+	str x30, [sp, #40]       // Guarda LR
 
 	//Dibujar luna
 	mov x21, #600 //Centro X de la luna
 	mov x22, #40 //Centro Y de la luna
 	mov x23, #30 //Radio de la luna
 	bl DibujoLuna //Llamo a la subrutina que dibuja la luna 
+	
+	
+	bl DibujarAntena
+
+	// Restaura registros
+	ldr x30, [sp, #40]       // Restaura LR
+	ldr x25, [sp, #32]       // Restaura x25
+	ldp x23, x24, [sp, #16]  // Restaura x23, x24
+	ldp x21, x22, [sp]       // Restaura x21, x22
+	add sp, sp, #48          // Libera espacio
+
+	ret
 
 
+	
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
@@ -402,7 +396,7 @@ rect_loop_x:
 	add x2, x2, #1 //siguiente y
 	subs x4, x4, #1 // Decrementar contador de alto
 	b.ne rect_loop_y //Repetir hasta que x4 = 0
-	br x30
+	ret
 //---------------------------------------------------------------
 // Infinite Loop
 	
