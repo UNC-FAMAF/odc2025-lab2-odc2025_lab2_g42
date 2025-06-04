@@ -14,32 +14,63 @@ DibujarAntena: // Dibujo la antena del primer edificio
 	mov x22, #130
 	mov x23, #90
 	mov x24, #50
-	movz w25, 0x33
-	movk w25, 0x3333
+	movz w25, 0x4040
+	movk w25, 0xFF40, lsl 16
 	bl DrawRect
 
 	mov x21, #122
 	mov x22, #60
 	mov x23, #5
 	mov x24, #80
-	movz w25, 0x33
-	movk w25, 0x3333
+	movz w25, 0x4040
+	movk w25, 0xFF40, lsl 16
 	bl DrawRect
 
-	mov x21, #114
+	mov x21, #114	// Punta de la antena
 	mov x22, #50
 	mov x23, #20
 	mov x24, #20
-	movz w25, 0xAA00
+	movz w25, 0x7700
 	movk w25, 0xFFFF, lsl 16
 	bl DrawRect
 
-	mov x21, #119
+	mov x21, #119	// Punta de la antena
 	mov x22, #54
 	mov x23, #10
 	mov x24, #10
-	movz w25, 0xFF00
+	movz w25, 0x0000
 	movk w25, 0xFFFF, lsl 16
+
+	bl DrawRect
+
+	mov x21, #100
+	mov x22, #100
+	mov x23, #50
+	mov x24, #30
+    movz w25, 0x4040
+	movk w25, 0xFF40, lsl 16
+
+    
+    bl DrawRect
+
+    mov x21, #90
+	mov x22, #120
+	mov x23, #70
+	mov x24, #30
+    movz w25, 0x4040
+	movk w25, 0xFF40, lsl 16
+
+    
+    bl DrawRect
+
+    mov x21, #70
+	mov x22, #160
+	mov x23, #111
+	mov x24, #30
+    movz w25, 0x4040
+	movk w25, 0xFF40, lsl 16
+
+
 	bl DrawRect
 
 
