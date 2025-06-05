@@ -8,6 +8,7 @@ foco:
     sub sp, sp, #40
 
     // Cargo los valores
+
     mov x21, #114	
     mov x22, #50
     mov x23, #20
@@ -19,12 +20,6 @@ foco:
     stur x23, [sp, #16]    // ancho
     stur x24, [sp, #24]    // alto
 
-loop_foco:
-    // Recupero los registros desde la pila
-    ldur x21, [sp, #0]
-    ldur x22, [sp, #8]
-    ldur x23, [sp, #16]
-    ldur x24, [sp, #24]
 
     // Primer color
     movz w25, 0x1100
@@ -44,11 +39,13 @@ loop_foco:
     mov x8, #20000
     bl delay
 
-    b loop_foco
+   // Recupero los registros desde la pila
+    ldur x21, [sp, #0]
+    ldur x22, [sp, #8]
+    ldur x23, [sp, #16]
+    ldur x24, [sp, #24]
 
-    // (Este código nunca se alcanza por el bucle infinito, pero es correcto incluirlo)
-salida:
     add sp, sp, #40   // Libero el stack
-
+    
+    
     br x30
-

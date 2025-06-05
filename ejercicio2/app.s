@@ -36,12 +36,8 @@ loop0:
 	bl DibujoCartel // Se dibujan los carteles
 
 	bl DibujarAntena
-
-	bl foco
-
-	bl luna
-
-
+	
+	bl animacion
 
 
 	// Ejemplo de uso de gpios
@@ -62,6 +58,7 @@ loop0:
 	// w11 será 1 si había un 1 en la posición 2 de w10, si no será 0
 	// efectivamente, su valor representará si GPIO 2 está activo
 	lsr w11, w11, 1
+
 
 
 
@@ -94,6 +91,9 @@ rect_loop_x:
 	ret
 //---------------------------------------------------------------
 // Infinite Loop
-	
+
+
 InfLoop:
+
 	b InfLoop
+

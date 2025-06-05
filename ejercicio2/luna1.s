@@ -4,44 +4,40 @@
 .extern delay
 
 luna:
-// Preserva registros ANTES de llamar a las funciones
-    sub sp, sp, #48          // Reserva espacio para 6 registros (x21-x25, x30)
-    stp x21, x22, [sp]       // Guarda x21, x22
-    stp x23, x24, [sp, #16]  // Guarda x23, x24
-    str x25, [sp, #32]       // Guarda x25
-    str x30, [sp, #40]       // Guarda LR
+    sub sp, sp, #48
+    stp x21, x22, [sp]
+    stp x23, x24, [sp, #16]
+    str x25, [sp, #32]
+    str x30, [sp, #40]
 
-    //Dibujar luna
-    mov x21, #600 //Centro X de la luna         
-    mov x22, #40 //Centro Y de la luna
-    mov x23, #30 //Radio de la luna
- 
+    mov x21, #600      // Centro X
+    mov x22, #40       // Centro Y
+    mov x23, #30       // Radio
 
-loop_x:
+    // Dibujo luna en color claro
     movk w10, 0xFFFF
     movk w10, 0xFFFF, lsl 16
-    bl DibujoCirculo //Llamo a la subrutina que dibuja la luna 
-    
-    add x21, x21, #9
-	movz x10, 0x1919, lsl 16
-	movk x10, 0x34, lsl 00
     bl DibujoCirculo
 
-    mov x8, #7000
-    bl delay 
+    // Borro anterior posición (color fondo)
+    add x21, x21, #9
+    movz w10, 0x1919, lsl 16
+    movk w10, 0x0034, lsl 00
+    bl DibujoCirculo
 
+    // Retrocedo X (muevo luna)
     sub x21, x21, #10
+
+    // Delay
     mov x8, #7000
-    bl delay 
-    b loop_x
+    bl delay
 
 
-    // Restaura registros
-    ldr x30, [sp, #40]       // Restaura LR
-    ldr x25, [sp, #32]       // Restaura x25
-    ldp x23, x24, [sp, #16]  // Restaura x23, x24
-    ldp x21, x22, [sp]       // Restaura x21, x22
-    add sp, sp, #48          // Libera espacio
+    ldr x30, [sp, #40]
+    ldr x25, [sp, #32]
+    ldp x23, x24, [sp, #16]
+    ldp x21, x22, [sp]
+    add sp, sp, #48
 
     br x30
 
