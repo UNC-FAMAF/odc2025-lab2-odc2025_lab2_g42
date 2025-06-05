@@ -1,3 +1,4 @@
+.text
 .globl DibujarAntena
 .extern DrawRect
 
@@ -24,23 +25,6 @@ DibujarAntena: // Dibujo la antena del primer edificio
 	mov x24, #80
 	movz w25, 0x4040
 	movk w25, 0xFF40, lsl 16
-	bl DrawRect
-
-	mov x21, #114	// Punta de la antena
-	mov x22, #50
-	mov x23, #20
-	mov x24, #20
-	movz w25, 0x7700
-	movk w25, 0xFFFF, lsl 16
-	bl DrawRect
-
-	mov x21, #119	// Punta de la antena
-	mov x22, #54
-	mov x23, #10
-	mov x24, #10
-	movz w25, 0x0000
-	movk w25, 0xFFFF, lsl 16
-
 	bl DrawRect
 
 	mov x21, #100
@@ -74,14 +58,11 @@ DibujarAntena: // Dibujo la antena del primer edificio
 	bl DrawRect
 
 
-      ldr x30, [sp]       // Restaura LR
-    add sp, sp, #16
-   
-   
        // Restaurar registros
     ldr x30, [sp, #40]
     ldp x24, x25, [sp, #32]
     ldp x22, x23, [sp, #16]
     ldp x20, x21, [sp]
     add sp, sp, #48
-    ret
+
+    br x30

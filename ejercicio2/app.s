@@ -35,35 +35,14 @@ loop0:
 
 	bl DibujoCartel // Se dibujan los carteles
 
-
-
-	// Preserva registros ANTES de llamar a las funciones
-	sub sp, sp, #48          // Reserva espacio para 6 registros (x21-x25, x30)
-	stp x21, x22, [sp]       // Guarda x21, x22
-	stp x23, x24, [sp, #16]  // Guarda x23, x24
-	str x25, [sp, #32]       // Guarda x25
-	str x30, [sp, #40]       // Guarda LR
-
-	//Dibujar luna
-	mov x21, #600 //Centro X de la luna
-	mov x22, #40 //Centro Y de la luna
-	mov x23, #30 //Radio de la luna
-	bl DibujoLuna //Llamo a la subrutina que dibuja la luna 
-	
-	
 	bl DibujarAntena
 
-	// Restaura registros
-	ldr x30, [sp, #40]       // Restaura LR
-	ldr x25, [sp, #32]       // Restaura x25
-	ldp x23, x24, [sp, #16]  // Restaura x23, x24
-	ldp x21, x22, [sp]       // Restaura x21, x22
-	add sp, sp, #48          // Libera espacio
+	bl foco
 
-	ret
+	bl luna
 
 
-	
+
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
@@ -83,6 +62,8 @@ loop0:
 	// w11 será 1 si había un 1 en la posición 2 de w10, si no será 0
 	// efectivamente, su valor representará si GPIO 2 está activo
 	lsr w11, w11, 1
+
+
 
 DrawRect:	
 	mov x1, x21	//x21 = X inicial

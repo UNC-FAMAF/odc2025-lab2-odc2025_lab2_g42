@@ -1,37 +1,7 @@
 .equ SCREEN_WIDTH, 640
 
 .text	
-.globl DibujoLuna
 .globl DibujoCirculo
-
-
-DibujoLuna:
- 	 
-	sub sp, sp, #48
-    stp x20, x21, [sp]
-    stp x22, x23, [sp, #16]
-    stp x24, x30, [sp, #32]  // Guarda LR
-
-
-//x21 va a ser el centro x
-//x22 va a ser el centro y
-//x23 va a ser el radio
-
-	movz w10, 0xFFF5, lsl 16 // Color amarillo claro	
-	movk w10, 0xF5DC, lsl 00
-	bl DibujoCirculo
-
-	add x21, x21, #5 // Desplazo la sombra
-	movz w10, 0x0000, lsl 16
-	movk w10, 0x0000, lsl 00
-	bl DibujoCirculo
-
-	ldp x24, x30, [sp, #32]  // Restaura LR
-    ldp x22, x23, [sp, #16]
-    ldp x20, x21, [sp]
-    add sp, sp, #48
-    ret
-
 
 
 DibujoCirculo:
