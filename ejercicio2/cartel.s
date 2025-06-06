@@ -54,9 +54,10 @@ bl DrawRect
 
 //Letras del cartel, Primero dibujo la letra 'O'
 
-	movz w25, 0xFFCC
-	movk w25, 0x55, lsl 16
+    movz w25, 0x00 // Rojo Apagado
+    movk w25, 0x0022 , lsl 16
 
+	
 	mov x21, #255  // eje x
 	mov x22, #110	// eje y
 	mov x23, #20 	// ancho
