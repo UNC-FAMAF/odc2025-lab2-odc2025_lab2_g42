@@ -3,6 +3,7 @@
 .extern luna
 .extern foco
 
+
 animacion:
     // Estado inicial de la luna (x19)
     mov x19, #600       // luna_x
@@ -25,7 +26,7 @@ luna:
     bl DibujoCirculo
 
     // Borro anterior posición (color fondo)
-    add x21, x19, #9
+    add x21, x19, #10
     movz w10, 0x1919, lsl 16
     movk w10, 0x0034, lsl 00
     bl DibujoCirculo
