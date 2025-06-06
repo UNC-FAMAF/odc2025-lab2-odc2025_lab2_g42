@@ -33,6 +33,7 @@ DibujarEstrellas:
     mov x11, #500
     mov x12, #30
     bl DibujarPunto
+    
 
     ldp x29, x30, [sp], 16
     

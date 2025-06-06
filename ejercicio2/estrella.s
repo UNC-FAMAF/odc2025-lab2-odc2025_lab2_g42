@@ -6,8 +6,6 @@ DibujarEstrellas:
     stp x29, x30, [sp, -16]!   // Guardar registros
     mov x29, sp
 
-    // Color blanco (0xFFFFFFFF)
-    mov x10, 0xFFFFFFFF
 
     // Estrella 1
     mov x11, #100      // X
@@ -33,6 +31,27 @@ DibujarEstrellas:
     mov x11, #500
     mov x12, #30
     bl DibujarPunto
+
+    //Estrella 6
+    mov x11, #450
+    mov x12, #40
+    bl DibujarPunto
+
+    //Estrella 7
+    mov x11, #600
+    mov x12, #50
+
+    //Estrella 8
+    mov x11, #250
+    mov x12, #30
+
+    //Estrella 9
+    mov x11, #150
+    mov x12, #50
+
+    //Estrella 10
+    mov x11, #350
+    mov x12, #80
 
     ldp x29, x30, [sp], 16
     
