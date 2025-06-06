@@ -471,6 +471,16 @@ foco:
     ldur x23, [sp, #16]
     ldur x24, [sp, #24]
 
+    //Titileo estrella
+    mov x10, 0xFFFFFF
+    bl DibujarEstrellas
+    //Delay
+    mov x8, #20000
+    bl delay
+    movz x10, 0x1919, lsl 16
+	movk x10, 0x34, lsl 00
+    bl DibujarEstrellas
+
     add sp, sp, #40   // Libero el stack
     
 

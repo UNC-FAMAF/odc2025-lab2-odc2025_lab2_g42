@@ -1,0 +1,133 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD antena.o
+LOAD app.o
+LOAD cartel.o
+LOAD edificios.o
+LOAD estrella.o
+LOAD luna.o
+LOAD start.o
+                0x0000000000080000                . = 0x80000
+
+.text           0x0000000000080000    0x90770
+ *(.text.boot)
+ .text.boot     0x0000000000080000    0x100c8 start.o
+                0x0000000000080000                _start
+ *(.text*)
+ .text          0x00000000000900c8       0xf8 antena.o
+                0x00000000000900c8                DibujarAntena
+ .text          0x00000000000901c0       0xe0 app.o
+                0x00000000000901c0                main
+                0x000000000009024c                DrawRect
+ .text          0x00000000000902a0      0x204 cartel.o
+                0x00000000000902a0                DibujoCartel
+ .text          0x00000000000904a4      0x184 edificios.o
+                0x00000000000904a4                detEdificio
+ .text          0x0000000000090628       0x70 estrella.o
+                0x0000000000090628                DibujarEstrellas
+ .text          0x0000000000090698       0xd8 luna.o
+                0x0000000000090698                DibujoLuna
+                0x00000000000906d8                DibujoCirculo
+ .text          0x0000000000090770    0x80000 start.o
+
+.iplt           0x0000000000110770        0x0
+ .iplt          0x0000000000110770        0x0 antena.o
+
+.rela.dyn       0x0000000000110770        0x0
+ .rela.iplt     0x0000000000110770        0x0 antena.o
+ .rela.text.boot
+                0x0000000000110770        0x0 antena.o
+
+.data           0x0000000000110770        0x0
+ .data          0x0000000000110770        0x0 antena.o
+ .data          0x0000000000110770        0x0 app.o
+ .data          0x0000000000110770        0x0 cartel.o
+ .data          0x0000000000110770        0x0 edificios.o
+ .data          0x0000000000110770        0x0 estrella.o
+ .data          0x0000000000110770        0x0 luna.o
+ .data          0x0000000000110770        0x0 start.o
+
+.igot.plt       0x0000000000110770        0x0
+ .igot.plt      0x0000000000110770        0x0 antena.o
+
+.bss            0x0000000000110770        0x0
+ *(.bss*)
+ .bss           0x0000000000110770        0x0 antena.o
+ .bss           0x0000000000110770        0x0 app.o
+ .bss           0x0000000000110770        0x0 cartel.o
+ .bss           0x0000000000110770        0x0 edificios.o
+ .bss           0x0000000000110770        0x0 estrella.o
+ .bss           0x0000000000110770        0x0 luna.o
+ .bss           0x0000000000110770        0x0 start.o
+
+.bss            0x0000000000110770        0x0
+                0x0000000000110770                . = ALIGN (0x10)
+                0x0000000000110770                __bss_start = .
+ *(.bss .bss.*)
+ *(COMMON)
+                0x0000000000110770                __bss_end = .
+                0x0000000000110770                _end = .
+                0x0000000000000000                __bss_size = ((__bss_end - __bss_start) >> 0x3)
+OUTPUT(kernel8.elf elf64-littleaarch64)
+LOAD linker stubs
+
+.debug_line     0x0000000000000000      0x342
+ .debug_line    0x0000000000000000       0x74 antena.o
+ .debug_line    0x0000000000000074       0x6d app.o
+ .debug_line    0x00000000000000e1       0xb7 cartel.o
+ .debug_line    0x0000000000000198       0x9a edificios.o
+ .debug_line    0x0000000000000232       0x54 estrella.o
+ .debug_line    0x0000000000000286       0x6c luna.o
+ .debug_line    0x00000000000002f2       0x50 start.o
+
+.debug_info     0x0000000000000000      0x142
+ .debug_info    0x0000000000000000       0x2e antena.o
+ .debug_info    0x000000000000002e       0x2e app.o
+ .debug_info    0x000000000000005c       0x2e cartel.o
+ .debug_info    0x000000000000008a       0x2e edificios.o
+ .debug_info    0x00000000000000b8       0x2e estrella.o
+ .debug_info    0x00000000000000e6       0x2e luna.o
+ .debug_info    0x0000000000000114       0x2e start.o
+
+.debug_abbrev   0x0000000000000000       0x8c
+ .debug_abbrev  0x0000000000000000       0x14 antena.o
+ .debug_abbrev  0x0000000000000014       0x14 app.o
+ .debug_abbrev  0x0000000000000028       0x14 cartel.o
+ .debug_abbrev  0x000000000000003c       0x14 edificios.o
+ .debug_abbrev  0x0000000000000050       0x14 estrella.o
+ .debug_abbrev  0x0000000000000064       0x14 luna.o
+ .debug_abbrev  0x0000000000000078       0x14 start.o
+
+.debug_aranges  0x0000000000000000      0x150
+ .debug_aranges
+                0x0000000000000000       0x30 antena.o
+ .debug_aranges
+                0x0000000000000030       0x30 app.o
+ .debug_aranges
+                0x0000000000000060       0x30 cartel.o
+ .debug_aranges
+                0x0000000000000090       0x30 edificios.o
+ .debug_aranges
+                0x00000000000000c0       0x30 estrella.o
+ .debug_aranges
+                0x00000000000000f0       0x30 luna.o
+ .debug_aranges
+                0x0000000000000120       0x30 start.o
+
+.debug_str      0x0000000000000000       0x98
+ .debug_str     0x0000000000000000       0x98 antena.o
+                                         0x63 (size before relaxing)
+ .debug_str     0x0000000000000098       0x60 app.o
+ .debug_str     0x0000000000000098       0x63 cartel.o
+ .debug_str     0x0000000000000098       0x66 edificios.o
+ .debug_str     0x0000000000000098       0x65 estrella.o
+ .debug_str     0x0000000000000098       0x61 luna.o
+ .debug_str     0x0000000000000098       0x62 start.o
