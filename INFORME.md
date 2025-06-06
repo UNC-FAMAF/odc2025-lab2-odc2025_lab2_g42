@@ -1,7 +1,11 @@
 Nombre y apellido 
+
 Integrante 1:   Valentino Grippo
+
 Integrante 2:   Samuel Coronel
+
 Integrante 3:   Tomas Toranzos
+
 Integrante 4:   Diego Vilte
 
 

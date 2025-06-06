@@ -12,6 +12,112 @@ contador:
     mov x11, #0
 
 loop33:
+
+
+// ================================ Dibujo las estrellas =============================================
+// Las anteriores estrellas no las implemento porque generan conflicto con las animaciones
+estrellasNuevas:
+    // La estrella se conforma en dos lineas y un centro
+    mov x21, #290
+    mov x22, #35
+    mov x23, #15
+    mov x24, #3
+    movz x25, 0xB6
+	movk x25, 0x7683
+    bl DrawRect
+
+    cmp x11, #11
+    b.lt estado2
+
+    b final1
+
+estado2:
+    movz w25, 0xFF
+    movk w25, 0xFFFF
+    bl DrawRect
+final1:
+
+//Segunda linea
+    mov x21, #296
+    mov x22, #29
+    mov x23, #3
+    mov x24, #15
+    movz x25, 0xB6
+	movk x25, 0x7683
+    bl DrawRect
+
+    cmp x11, #11
+    b.lt estado1
+
+    b final
+
+estado1:
+    movz w25, 0xFF
+    movk w25, 0xFFFF
+    bl DrawRect
+final:
+    // cuadrado del centro
+    mov x21, #294
+    mov x22, #33
+    mov x23, #7
+    mov x24, #7
+	movz x25, 0x1919, lsl 16
+	movk x25, 0x34, lsl 00
+    bl DrawRect
+
+// ================================ Dibujo la segunda estrella =============================================
+// Las anteriores estrellas no las implemento porque generan conflicto con las animaciones
+estrellasNuevas2:
+    // La estrella se conforma en dos lineas y un centro
+    mov x21, #540
+    mov x22, #40
+    mov x23, #15
+    mov x24, #3
+    movz x25, 0xB6
+	movk x25, 0x7683
+    bl DrawRect
+
+    cmp x11, #17
+    b.lt estado3
+
+    b final2
+
+estado3:
+    movz w25, 0xFF
+    movk w25, 0xFFFF
+    bl DrawRect
+final2:
+
+//Segunda linea
+    mov x21, #546
+    mov x22, #34
+    mov x23, #3
+    mov x24, #15
+    movz x25, 0xB6
+	movk x25, 0x7683
+    bl DrawRect
+
+    cmp x11, #17
+    b.lt estado4
+
+    b final3
+
+estado4:
+    movz w25, 0xFF
+    movk w25, 0xFFFF
+    bl DrawRect
+final3:
+    // cuadrado del centro
+    mov x21, #544
+    mov x22, #38
+    mov x23, #7
+    mov x24, #7
+	movz x25, 0x1919, lsl 16
+	movk x25, 0x34, lsl 00
+    bl DrawRect
+
+
+
     
     cmp x11, #20
     b.lt skip_reset
@@ -343,56 +449,6 @@ termino_luz6:
 
 // ================================ termina las letras =============================================
 
-// ================================ Dibujo las estrellas =============================================
-// Las anteriores estrellas no las implemento porque generan conflicto con las animaciones
-estrellasNuevas:
-    // La estrella se conforma en dos lineas y un centro
-    mov x21, #290
-    mov x22, #35
-    mov x23, #15
-    mov x24, #3
-    movz x25, 0xB6
-	movk x25, 0x7683
-    bl DrawRect
-
-    cmp x11, #11
-    b.lt estado2
-
-    b final1
-
-estado2:
-    movz w25, 0xFF
-    movk w25, 0xFFFF
-    bl DrawRect
-final1:
-
-//Segunda linea
-    mov x21, #296
-    mov x22, #29
-    mov x23, #3
-    mov x24, #15
-    movz x25, 0xB6
-	movk x25, 0x7683
-    bl DrawRect
-
-    cmp x11, #11
-    b.lt estado1
-
-    b final
-
-estado1:
-    movz w25, 0xFF
-    movk w25, 0xFFFF
-    bl DrawRect
-final:
-    // cuadrado del centro
-    mov x21, #294
-    mov x22, #33
-    mov x23, #7
-    mov x24, #7
-	movz x25, 0x1919, lsl 16
-	movk x25, 0x34, lsl 00
-    bl DrawRect
 
 // ================================ Dibujo una nube =============================================
 
