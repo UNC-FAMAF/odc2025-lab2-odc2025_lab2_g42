@@ -1,7 +1,5 @@
 .text
 .global animacion
-.extern luna
-.extern foco
 
 animacion:
 
@@ -9,7 +7,7 @@ animacion:
     mov x19, #600       // luna_x
 
 contador:
-    mov x11, #0
+    mov x11, #0 // Inicio el contador en 0
 
 loop33:
 
@@ -27,9 +25,9 @@ estrellasNuevas:
     bl DrawRect
 
     cmp x11, #11
-    b.lt estado2
+    b.lt estado2    // Si el contador es menor que 11 pasa al estado2
 
-    b final1
+    b final1        // Si no es asi pasa a final1
 
 estado2:
     movz w25, 0xFF

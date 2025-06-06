@@ -30,6 +30,7 @@ loop0:
 	cbnz x2,loop1  // Si no es la última fila, salto
 	
 	bl DibujarEstrellas // Se dibujan las estrellas
+	
 	bl DibujarAntena
 	
 	bl detEdificio // Se dibujan los edificios
